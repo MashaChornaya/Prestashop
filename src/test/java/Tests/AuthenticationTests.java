@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AuthenticationTest extends BaseTest {
+public class AuthenticationTests extends BaseTest {
     AuthenticationPage authenticationPage;
     CreateAnAccountPage createAnAccountPage;
 
@@ -26,7 +26,8 @@ public class AuthenticationTest extends BaseTest {
     @Description("Positive New Account Authorisation Test")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
-    public void positiveAuthorisationTest() {
+    public void positiveCreateAccountTest() {
+        homePage.clickToSignInButton();
         authenticationPage.setEmail(EMAIL);
         authenticationPage.clickCreateAccountButton();
         createAnAccountPage.clickTitleButton();
@@ -35,25 +36,30 @@ public class AuthenticationTest extends BaseTest {
         createAnAccountPage.setPassword(PASSWORD);
         //createAnAccountPage.clickToDayOfBirthSelect();
         createAnAccountPage.clickSubmitAccount();
-        Assert.assertTrue(createAnAccountPage.isNewAccountIconDisplayed());
-        Assert.assertEquals(createAnAccountPage.getNewAccountIconText(),"My account");
+        Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
+        Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");
     }
     @Test(groups = {"Smoke"})
     @Description("Positive Sign In Test")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void positiveSignInTest() {
+        homePage.clickToSignInButton();
         authenticationPage.setEmailForSignIn(EMAIL);
         authenticationPage.setPasswordForSignIn(PASSWORD);
         authenticationPage.clickSignButton();
-        Assert.assertTrue(createAnAccountPage.isNewAccountIconDisplayed());
-        Assert.assertEquals(createAnAccountPage.getNewAccountIconText(),"My account");
+        Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
+        Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");
     }
     @Test(dataProvider = "negativeAuthentication", groups = {"Negative", "Regression"})
-    @Description("Troubles with first name, last name and password")
+    @Description("Troubles with first name, last name and password when you try to create new account")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void negativeAuthorisationTest(String firstName,String lastName, String password, String errorMessage) {
+        homePage.clickToSignInButton();
+        authenticationPage.setEmail(EMAIL);
+        authenticationPage.clickCreateAccountButton();
+        createAnAccountPage.clickTitleButton();
         createAnAccountPage.setFirstName(firstName);
         createAnAccountPage.setLastName(lastName);
         createAnAccountPage.setPassword(password);
@@ -61,7 +67,7 @@ public class AuthenticationTest extends BaseTest {
         Assert.assertTrue(createAnAccountPage.isErrorMessageDisplayed());
         Assert.assertEquals(createAnAccountPage.getErrorMessageText(), errorMessage);
     }
-    @DataProvider(name = "negativeAuthentication")
+    @DataProvider(name = "negative Authentication")
     public Object[][] negativeAuthorisationTestData() {
         return new Object[][]{
                 {FIRST_NAME,LAST_NAME, "", "passwd is required."},

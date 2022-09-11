@@ -28,6 +28,7 @@ public abstract class BasePage {
         return isPresent;
     }
 
+
     public void waitForElementDisplayed(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

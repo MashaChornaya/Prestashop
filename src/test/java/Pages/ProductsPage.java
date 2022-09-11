@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 @Log4j2
-public class DressesPage extends BasePage {
-    public DressesPage(WebDriver driver) {
+public class ProductsPage extends BasePage {
+    public ProductsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -16,7 +16,8 @@ public class DressesPage extends BasePage {
     private final static By eveningDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/10-evening-dresses']");
     private final static By summerDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/11-summer-dresses']");
     private final static By dressPageIcon = By.cssSelector(".cat-name");
-    private final By productLink = By.cssSelector("a[title$=Dress]");
+    private final static By resultsMessage = By.xpath("//span[@class='heading-counter']");
+    private final By productLink = By.cssSelector("h5[itemprop=name]");//a[title$=Dress]
     private final String productContainerLocator
             = "//div[@class='product-container']/div/div/a[@title='%s']";
 private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='product-name']");
@@ -42,7 +43,7 @@ private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='p
     }
 
     public void openItemByName(String productsName) {
-        log.info("Open Item with product name from Base Test");
+        log.info(String.format("Open Item with product name = %s ",productsName));
         WebElement productContainer = getProductContainerByName(productsName);
         productContainer.findElement(productLink).click();
     }
@@ -53,10 +54,17 @@ private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='p
                         String.format(productContainerLocator, productsName)
                 )
         );
-
     }
+
     public void clickItem1Button() {
         log.info("Click 'Item1' button");
         driver.findElement(item1).click();
+    }
+    public boolean isResultsMassageDisplayed(){
+        return driver.findElement(resultsMessage).isDisplayed();
+    }
+    public String getResultsMassageText() {
+        log.info("Get text massage after searching product by name");
+        return driver.findElement(resultsMessage).getText();
     }
 }

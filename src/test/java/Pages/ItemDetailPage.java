@@ -3,6 +3,10 @@ package Pages;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 @Log4j2
 public class ItemDetailPage extends BasePage {
     public ItemDetailPage(WebDriver driver) {
@@ -16,6 +20,8 @@ public class ItemDetailPage extends BasePage {
     private final static By addToCartItemIcon = By.xpath("//h2[text()][1]");
     private final static By clickCheckOutButton = By.xpath("//a[@class='btn btn-default button button-medium']");
     private final static By clickContinueShoppingButton = By.xpath("//span[@title='Продолжить покупки']");
+   private final static By clickCloseWindowButton = By.cssSelector(".cross");
+   private final static By cartButtonItemDetailsPage = By.cssSelector(".shopping_cart");
     @Override
     public void waitForPageLoaded() {
         log.info("Waiting for item details page loaded");
@@ -42,6 +48,11 @@ public class ItemDetailPage extends BasePage {
     public boolean isAddToCartItemIconDisplayed() {
         return driver.findElement(addToCartItemIcon).isDisplayed();
     }
+
+    public void waitForAddToCartItemIconDisplayed() {
+        WebElement addToCartItemIElement=(new WebDriverWait(driver,5))
+                .until(ExpectedConditions.elementToBeClickable(addToCartItemIcon));
+    }
     public String getAddToCartItemIconText() {
         log.info("Get text after adding item to cart button");
         return driver.findElement(addToCartItemIcon).getText();
@@ -51,8 +62,15 @@ public class ItemDetailPage extends BasePage {
         driver.findElement(clickCheckOutButton).click();
     }
     public void clickContinueShoppingButton() {
-        log.info("Click Continue Shopping button");
+        log.info("Click 'Continue Shopping' button");
         driver.findElement(clickContinueShoppingButton).click();
     }
-
+public void clickCloseWindowButton(){
+    log.info("Click 'Close window' button");
+    driver.findElement(clickCloseWindowButton).click();
+}
+public void clickCartButtonItemDetailsButton(){
+        log.info("Click 'Shopping cart' button");
+        driver.findElement(cartButtonItemDetailsPage).click();
+}
 }

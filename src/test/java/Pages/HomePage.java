@@ -15,25 +15,44 @@ public class HomePage  extends BasePage{
         waitForElementDisplayed(home_Picture);
     }
     private final static String URL = "http://prestashop.qatestlab.com.ua/ru/";
-    protected final By home_Picture= By.xpath("//img[@src='http://prestashop.qatestlab.com.ua/modules/homeslider/images/sample-1.jpg']");
-    private final By signInButton = By.cssSelector(".login");
-    private final By cartButton = By.xpath("//a[@title='View my shopping cart']");
-    private final By searchInput = By.xpath("//input[@class='search_query form-control ac_input']");
-    private final By womenSection = By.xpath("//a[@title='Women']");
-    private final By dressesSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='Dresses'][2]");
-    private final By tShirtSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='T-shirts'][2]");
+    protected final static By home_Picture= By.xpath("//img[@src='http://prestashop.qatestlab.com.ua/modules/homeslider/images/sample-1.jpg']");
+    private final static By signInHomePageButton = By.cssSelector(".login");
+    private final static By cartButton = By.xpath("//a[@title='View my shopping cart']");
+    private final static By searchInput = By.cssSelector("#search_query_top");
+    private final static By searchButton = By.xpath("//button[@name='submit_search']");
+    private final static By womenSection = By.xpath("//a[@title='Women']");
+    private final static By dressesSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='Dresses'][2]");
+    private final static By tShirtSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='T-shirts'][2]");
 
+    private final static  By item =By.xpath("//h5//a[@title='Blouse']");
 
     public void clickToSignInButton(){
-        driver.findElement(signInButton).click();
+        log.info("Click 'Sign in' button");
+        driver.findElement(signInHomePageButton).click();
     }
+    public void setProductNameToSearchInput(String productName){
+        log.info(String.format("Set product name = %s", productName));
+        driver.findElement(searchInput).sendKeys(productName);
+    }
+    public void clickSearchButton(){
+        log.info("Click 'Search' button");
+        driver.findElement(searchButton).click();
+    }
+
     public void clickToCartButton(){
         driver.findElement(cartButton).click();
     }
 
     public void clickToDressesSectionButton(){
+        log.info("Click 'Dresses Section' button");
         driver.findElement(dressesSection).click();
     }
+    public void clickToItemName(){
+        log.info("Click 'item name' icon");
+        driver.findElement(item).click();
+    }
+
+
     public void clickToWomenSectionButton(){
         driver.findElement(womenSection).click();
     }

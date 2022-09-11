@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
+    //final static String EMAIL="mashabigdreams@gmail.com";
     final static String EMAIL="mashabigdreams@gmail.com";
     final static String PASSWORD="qwerty123456";
     final static String FIRST_NAME="Masha";

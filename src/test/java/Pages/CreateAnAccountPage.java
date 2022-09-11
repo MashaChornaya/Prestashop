@@ -22,7 +22,7 @@ public class CreateAnAccountPage extends BasePage {
     private final static By dayOfBirthSelect = By.cssSelector("#days");
     private final static By passwordInput = By.cssSelector("#passwd");
     private final static By submitAccountButton = By.cssSelector("#submitAccount");
-    private final static By newAccountIcon = By.xpath("//h1[@class='page-heading']");
+    private final static By accountIcon = By.xpath("//h1[@class='page-heading']");
     private final static By errorMassage=By.xpath("//div[@class='alert alert-danger']/descendant::li[text()=' is required.']");
 
 
@@ -37,19 +37,19 @@ public class CreateAnAccountPage extends BasePage {
         driver.findElement(titleButton).click();
     }
     public void setFirstName(String firstName) {
-        log.info(String.format("Setting firstName = %s", firstName));
+        log.info(String.format("Set firstName = %s", firstName));
         driver.findElement(firstNameInput).sendKeys(firstName);
     }
     public void setLastName(String lastName) {
-        log.info(String.format("Setting lastName = %s", lastName));
+        log.info(String.format("Set lastName = %s", lastName));
         driver.findElement(lastNameInput).sendKeys(lastName);
     }
     public void setPassword(String password) {
-        log.info(String.format("Setting password = %s", password));
+        log.info(String.format("Set password = %s", password));
         driver.findElement(passwordInput).sendKeys(password);
     }
     public void clickToDayOfBirthSelect() {
-        log.info("Clicking to 'DayOfBirth' select");
+        log.info("Click to 'DayOfBirth' select");
         driver.findElement(dayOfBirthSelect).click();
     }
     public void selectDayOfBirth(String option){
@@ -61,11 +61,11 @@ public class CreateAnAccountPage extends BasePage {
         log.info("Click to 'Submit account' button");
         driver.findElement(submitAccountButton).click();
     }
-    public boolean isNewAccountIconDisplayed() {
-        return driver.findElement(newAccountIcon).isDisplayed();
+    public boolean isAccountIconDisplayed() {
+        return driver.findElement(accountIcon).isDisplayed();
     }
-    public String getNewAccountIconText() {
-        return driver.findElement(newAccountIcon).getText();
+    public String getAccountIconText() {
+        return driver.findElement(accountIcon).getText();
     }
 
 
@@ -84,6 +84,7 @@ public class CreateAnAccountPage extends BasePage {
     }
 
     public boolean isErrorMessageDisplayed() {
+
         return driver.findElement(errorMassage).isDisplayed();
     }
     public String getErrorMessageText() {
