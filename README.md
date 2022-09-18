@@ -31,7 +31,7 @@ This project was created with using the Page Object pattern.
 
 # Setting up config
 1) Clone this repository.
-2) Enter your email and password in config.properties.
+
 
 #  Checklist:
 1) Verification for account creation: positive and negative scenario, using data provider.
