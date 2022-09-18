@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Negative Tests">
+<suite name="Smoke Test" parallel="classes" thread-count="4">
     <parameter name="browser" value="chrome"/>
-    <test name="Negative tests">
+    <test name="Test">
         <groups>
             <run>
-                <include name="Negative"/>
+                <include name="Smoke"/>
             </run>
         </groups>
         <packages>
-            <package name="Tests"></package>
+            <package name="Tests"/>
         </packages>
     </test>
 </suite>

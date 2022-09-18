@@ -24,11 +24,17 @@ public class HomePage  extends BasePage{
     private final static By dressesSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='Dresses'][2]");
     private final static By tShirtSection = By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/descendant::a[@title='T-shirts'][2]");
 
+    private final static By signOutHomePageButton = By.cssSelector(".logout");
     private final static  By item =By.xpath("//h5//a[@title='Blouse']");
+    private final static By accountButton = By.cssSelector(".account");
 
     public void clickToSignInButton(){
         log.info("Click 'Sign in' button");
         driver.findElement(signInHomePageButton).click();
+    }
+    public void clickToSignOutButton(){
+        log.info("Click 'Sign Out' button");
+        driver.findElement(signOutHomePageButton).click();
     }
     public void setProductNameToSearchInput(String productName){
         log.info(String.format("Set product name = %s", productName));
@@ -51,7 +57,10 @@ public class HomePage  extends BasePage{
         log.info("Click 'item name' icon");
         driver.findElement(item).click();
     }
-
+    public void clickToAccountButton(){
+        log.info("Click account button on addresses page");
+        driver.findElement(accountButton).click();
+    }
 
     public void clickToWomenSectionButton(){
         driver.findElement(womenSection).click();

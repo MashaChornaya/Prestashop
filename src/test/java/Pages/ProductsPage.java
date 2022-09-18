@@ -17,10 +17,17 @@ public class ProductsPage extends BasePage {
     private final static By summerDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/11-summer-dresses']");
     private final static By dressPageIcon = By.cssSelector(".cat-name");
     private final static By resultsMessage = By.xpath("//span[@class='heading-counter']");
-    private final By productLink = By.cssSelector("h5[itemprop=name]");//a[title$=Dress]
+    private final static By productName= By.cssSelector("#center_column .product-name");
+    private final static By productPrice = By.cssSelector("#center_column .right-block [itemprop='price']");
+private final static By itemLink= By.xpath("//div[@class='right-block']//a[@class='product-name']");
+    private final static By productLink =By.cssSelector("a[class$=_link]");
     private final String productContainerLocator
-            = "//div[@class='product-container']/div/div/a[@title='%s']";
-private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='product-name']");
+            = "//*[@class='product_img_link' and @title='%s']/ancestor::div[@class='product-container']";
+    private final String productContainerPriceLocator
+            = "//span[@class='price product-price' and contains(text(),'%s ')] /ancestor::div[@class='product-container']";
+
+    private final static By warningAlert = By.xpath("//p[@class='alert alert-warning']");
+
     @Override
     public void waitForPageLoaded() {
         log.info("Wait for dress page loaded");
@@ -45,7 +52,7 @@ private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='p
     public void openItemByName(String productsName) {
         log.info(String.format("Open Item with product name = %s ",productsName));
         WebElement productContainer = getProductContainerByName(productsName);
-        productContainer.findElement(productLink).click();
+        productContainer.findElement(itemLink).click();
     }
 
     private WebElement getProductContainerByName(String productsName) {
@@ -55,16 +62,33 @@ private final static By item1=By.xpath("//a[@title='Printed Dress' and @class='p
                 )
         );
     }
-
-    public void clickItem1Button() {
-        log.info("Click 'Item1' button");
-        driver.findElement(item1).click();
+    public boolean getProductName(String productsName) {
+        WebElement productContainer = getProductContainerByName(productsName);
+        return productContainer.findElement(productName).isDisplayed();
     }
+
     public boolean isResultsMassageDisplayed(){
         return driver.findElement(resultsMessage).isDisplayed();
     }
     public String getResultsMassageText() {
         log.info("Get text massage after searching product by name");
         return driver.findElement(resultsMessage).getText();
+    }
+    private WebElement getProductContainerByPrice(String productsPrice) {
+        return driver.findElement(
+                By.xpath(
+                        String.format(productContainerPriceLocator, productsPrice)));
+    }
+    public boolean getProductPrice(String productsPrice) {
+        WebElement productContainer = getProductContainerByPrice(productsPrice);
+        return productContainer.findElement(productPrice).isDisplayed();
+    }
+
+    public boolean isWarningAlertDisplayed(){
+        return driver.findElement(warningAlert).isDisplayed();
+    }
+    public String getWarningAlertText(){
+        log.info("Get text from warning alert after searching product by name");
+        return driver.findElement(warningAlert).getText();
     }
 }

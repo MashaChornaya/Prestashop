@@ -19,23 +19,14 @@ public class AuthenticationTests extends BaseTest {
     public void initialise(){
         authenticationPage=new AuthenticationPage(driver);
         createAnAccountPage=new CreateAnAccountPage(driver);
-
     }
+    final static String YEAR="1999";
 
     @Test(groups = {"Smoke"})
     @Description("Positive New Account Authorisation Test")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void positiveCreateAccountTest() {
-        homePage.clickToSignInButton();
-        authenticationPage.setEmail(EMAIL);
-        authenticationPage.clickCreateAccountButton();
-        createAnAccountPage.clickTitleButton();
-        createAnAccountPage.setFirstName(FIRST_NAME);
-        createAnAccountPage.setLastName(LAST_NAME);
-        createAnAccountPage.setPassword(PASSWORD);
-        //createAnAccountPage.clickToDayOfBirthSelect();
-        createAnAccountPage.clickSubmitAccount();
         Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
         Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");
     }
@@ -44,20 +35,19 @@ public class AuthenticationTests extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void positiveSignInTest() {
+        homePage.clickToSignOutButton();
         homePage.clickToSignInButton();
-        authenticationPage.setEmailForSignIn(EMAIL);
-        authenticationPage.setPasswordForSignIn(PASSWORD);
-        authenticationPage.clickSignButton();
+        authenticationPage.authentication(email,password);
         Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
         Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");
     }
-    @Test(dataProvider = "negativeAuthentication", groups = {"Negative", "Regression"})
+    @Test(dataProvider = "negativeCreateAccount", groups = {"Negative", "Smoke"})
     @Description("Troubles with first name, last name and password when you try to create new account")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
-    public void negativeAuthorisationTest(String firstName,String lastName, String password, String errorMessage) {
-        homePage.clickToSignInButton();
-        authenticationPage.setEmail(EMAIL);
+    public void negativeCreateAccountTest(String email,String firstName,String lastName, String password, String errorMessage) {
+        homePage.clickToSignOutButton();
+        authenticationPage.setEmail(email);
         authenticationPage.clickCreateAccountButton();
         createAnAccountPage.clickTitleButton();
         createAnAccountPage.setFirstName(firstName);
@@ -67,12 +57,12 @@ public class AuthenticationTests extends BaseTest {
         Assert.assertTrue(createAnAccountPage.isErrorMessageDisplayed());
         Assert.assertEquals(createAnAccountPage.getErrorMessageText(), errorMessage);
     }
-    @DataProvider(name = "negative Authentication")
-    public Object[][] negativeAuthorisationTestData() {
+    @DataProvider(name = "negativeCreateAccount")
+    public Object[][] negativeCreateAccountTestData() {
         return new Object[][]{
-                {FIRST_NAME,LAST_NAME, "", "passwd is required."},
-                {FIRST_NAME,"",PASSWORD, "lastname is required."},
-                {"",LAST_NAME,PASSWORD, "firstname is required."},
+                {"zxklopc@mail.ru",FIRST_NAME,LAST_NAME, "" , "passwd is required."},
+                {"lokijklh@gmail.com",FIRST_NAME, "" ,PASSWORD, "lastname is required."},
+                {"qwedfbvb@mail.ru", "" ,LAST_NAME,PASSWORD, "firstname is required."},
         };
     }
 }

@@ -14,27 +14,18 @@ public class CartPage extends BasePage {
         super(driver);
     }
     private final static String URL = "http://prestashop.qatestlab.com.ua/ru/order";
-    private final static By cartPageHeader = By.xpath("//h1[@id='cart_title']/text()");
-    private final static By itemName=By.xpath("//p[@class='product-name']/a[@href and text()='Blouse']");
-    private final static By itemPrice=By.xpath("//span[@id='product_price_3_13_0']");
-    private final static By trashButton=By.cssSelector(".icon-trash");
+    private final static By cartPageHeader = By.cssSelector("#cart_title");
+    private final static By trashButton=By.cssSelector(".cart_quantity_delete");
     private final static By proceedToCheckoutButton=By.xpath("//span[text()='Proceed to checkout']");
-    private final static By valueOfCart = By.xpath("//span[@id='summary_products_quantity']");
+    private final static By valueOfCart = By.xpath("//p[@class='alert alert-warning']");
 
 
     @Override
     public void waitForPageLoaded() {
-        log.info("Wait for create page loaded");
+        log.info("Wait for cart page loaded");
         waitForElementDisplayed(cartPageHeader);
     }
-    public String getChosenItemName() {
-        log.info("Item name check");
-        return driver.findElement(itemName).getText();
-    }
-    public String getChosenItemPrice() {
-        log.info("Item price check");
-        return driver.findElement(itemPrice).getText();
-    }
+
     public void clickProceedToCheckoutButton() {
         log.info("Click 'Proceed To Checkout' button");
         driver.findElement(proceedToCheckoutButton).click();
@@ -51,4 +42,8 @@ public class CartPage extends BasePage {
         return driver.findElement(valueOfCart).getText();
     }
 
+
+    public boolean isAlertDisplayed() {
+        return driver.findElement(valueOfCart).isDisplayed();
+    }
 }

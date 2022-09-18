@@ -1,5 +1,4 @@
 package Tests;
-
 import Pages.*;
 import io.qameta.allure.Description;
 import io.qameta.allure.Link;
@@ -9,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CartTest extends BaseTest {
+public class CheckoutTests extends BaseTest {
     AuthenticationPage authenticationPage;
     CreateAnAccountPage createAnAccountPage;
     CartPage cartPage;
@@ -17,8 +16,9 @@ public class CartTest extends BaseTest {
     ProductsPage productsPage;
     ItemDetailPage itemDetailPage;
     AddressesPage addressesPage;
+    ShippingPage shippingPage;
+    PaymentPage paymentPage;
     MyAccountPage myAccountPage;
-
 
     @BeforeClass(alwaysRun = true)
     public void initialise(){
@@ -29,10 +29,10 @@ public class CartTest extends BaseTest {
         productsPage=new ProductsPage(driver);
         itemDetailPage=new ItemDetailPage(driver);
         addressesPage=new AddressesPage(driver);
+        shippingPage=new ShippingPage(driver);
+        paymentPage=new PaymentPage(driver);
         myAccountPage=new MyAccountPage(driver);
-
     }
-
     final static String FIRST_NAME_FOR_ADDRESS_PAGE="Masha";
     final static String LAST_NAME_FOR_ADDRESS_PAGE="Chornaya";
     final static String ADDRESS_FOR_ADDRESS_PAGE="street New home 1 flat 1";
@@ -42,49 +42,11 @@ public class CartTest extends BaseTest {
     final static String ADDRESS_TITLE_FOR_ADDRESS_PAGE="First address";
 
 
-
     @Test(groups = {"Smoke"})
     @Link("http://prestashop.qatestlab.com.ua/en/")
-    @Description("Add product to cart")
+    @Description("Actions for positive checkout")
     @Severity(SeverityLevel.CRITICAL)
-    public void addItemToCartTest() {
-        homePage.clickToDressesSectionButton();
-        productsPage.waitForPageLoaded();
-        productsPage.clickCasualDressesButton();
-        productsPage.openItemByName(ITEM_NAME);
-        itemDetailPage.clickAddToCardButton();
-        itemDetailPage.waitForAddToCartItemIconDisplayed();
-        Assert.assertTrue(itemDetailPage.isAddToCartItemIconDisplayed());
-        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Товар был успешно добавлен в вашу корзину");
-    }
-    @Test(groups = {"Smoke"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
-    @Description("Remove product from cart")
-    @Severity(SeverityLevel.CRITICAL)
-    public void removeItemFromCartTest() {
-        homePage.clickToDressesSectionButton();
-        productsPage.waitForPageLoaded();
-        productsPage.clickCasualDressesButton();
-        productsPage.openItemByName(ITEM_NAME);
-        itemDetailPage.clickAddToCardButton();
-        itemDetailPage.waitForAddToCartItemIconDisplayed();
-        Assert.assertTrue(itemDetailPage.isAddToCartItemIconDisplayed());
-        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Товар был успешно добавлен в вашу корзину");
-        itemDetailPage.clickCloseWindowButton();
-        itemDetailPage.clickCartButtonItemDetailsButton();
-        cartPage.waitForPageLoaded();
-        cartPage.clickTrashButton();
-        itemDetailPage.clickCartButtonItemDetailsButton();
-        cartPage.waitForPageLoaded();
-        Assert.assertTrue(cartPage.isAlertDisplayed());
-        Assert.assertEquals(cartPage.getCartValue(),"Your shopping cart is empty.");
-    }
-
-    @Test(groups = {"Regression"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
-    @Description("Actions on addresses page")
-    @Severity(SeverityLevel.CRITICAL)
-    public void actionsOnAddressesPageTestWithSelect() {
+    public void actionsForPositiveCheckoutTest() {
         homePage.clickToDressesSectionButton();
         productsPage.waitForPageLoaded();
         productsPage.clickCasualDressesButton();
@@ -107,6 +69,52 @@ public class CartTest extends BaseTest {
         addressesPage.setAddressTitle(ADDRESS_TITLE_FOR_ADDRESS_PAGE);
         addressesPage.clickSaveAddressButton();
         Assert.assertTrue(addressesPage.isAddressCompleteIconDisplayed());
+        addressesPage.clickToProceedToCheckoutButtonOnAddressesPage();
+        Assert.assertTrue(shippingPage.isShippingHeaderDisplayed());
+        shippingPage.clickAgreeCheckBoxOnShippingPageButton();
+        shippingPage.clickProceedToCheckoutButtonOnShippingPageButton();
+        paymentPage.waitForPageLoaded();
+        Assert.assertEquals(paymentPage.getWarningOnPaymentPageText(),"No payment modules have been installed.");
+        homePage.clickToAccountButton();
+        myAccountPage.clickToMyAddressesButton();
+        myAccountPage.clickToDeleteAddressesButton();
+        myAccountPage.clickToAlert();
+    }
+
+
+    @Test(groups = {"Smoke"})
+    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Description("Actions for negative checkout")
+    @Severity(SeverityLevel.CRITICAL)
+    public void actionsForNegativeCheckoutTest() {
+        homePage.clickToDressesSectionButton();
+        productsPage.waitForPageLoaded();
+        productsPage.clickCasualDressesButton();
+        productsPage.openItemByName(ITEM_NAME);
+        Assert.assertEquals(itemDetailPage.getItemName(),ITEM_NAME);
+        Assert.assertEquals(itemDetailPage.getItemShortDescription(), ITEM_DESCRIPTION);
+        itemDetailPage.clickAddToCardButton();
+        itemDetailPage.clickCloseWindowButton();
+        itemDetailPage.clickCartButtonItemDetailsButton();
+        cartPage.waitForPageLoaded();
+        cartPage.clickProceedToCheckoutButton();
+        addressesPage.waitForPageLoaded();
+        addressesPage.setFirstNameAddressPage(FIRST_NAME_FOR_ADDRESS_PAGE);
+        addressesPage.setLastNameAddressPage(LAST_NAME_FOR_ADDRESS_PAGE);
+        addressesPage.setAddress(ADDRESS_FOR_ADDRESS_PAGE);
+        addressesPage.setZipPostalCode(ZIP_POSTAL_CODE_FOR_ADDRESS_PAGE);
+        addressesPage.setCity(CITY_FOR_ADDRESS_PAGE);
+        addressesPage.setHomePhone(HOME_PHONE_FOR_ADDRESS_PAGE);
+        addressesPage.chooseStateWithSelect(5);
+        addressesPage.setAddressTitle(ADDRESS_TITLE_FOR_ADDRESS_PAGE);
+        addressesPage.clickSaveAddressButton();
+        Assert.assertTrue(addressesPage.isAddressCompleteIconDisplayed());
+        addressesPage.clickToProceedToCheckoutButtonOnAddressesPage();
+        Assert.assertTrue(shippingPage.isShippingHeaderDisplayed());
+        shippingPage.clickProceedToCheckoutButtonOnShippingPageButton();
+        Assert.assertTrue(shippingPage.isErrorMessageDisplayed());
+        Assert.assertEquals(shippingPage.getErrorMassageText(),"You must agree to the terms of service before continuing.");
+        shippingPage.clickCloseErrorMessageButton();
         homePage.clickToAccountButton();
         myAccountPage.clickToMyAddressesButton();
         myAccountPage.clickToDeleteAddressesButton();

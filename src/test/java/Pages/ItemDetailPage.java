@@ -12,11 +12,14 @@ public class ItemDetailPage extends BasePage {
     public ItemDetailPage(WebDriver driver) {
         super(driver);
     }
-    private final static By itemName= By.xpath("//h1[@itemprop='name']");
-    private final static By itemPicture=By.xpath("//img[@id='bigpic']");
-    private final static By itemPrice= By.xpath("//span[@itemprop='price']");
-    private final static By itemShortDescription= By.xpath("//div[@id='short_description_content']");
-    private final static By addToCartButton= By.xpath("//p[@id='add_to_cart']");
+    private final static By itemName= By.cssSelector("[itemprop='name']");
+    private final static By itemNameQuick=By.xpath("//div[@class='pb-center-column col-xs-12 col-sm-4']//h1");////h1[@itemprop='name']"
+    private final static By itemPicture=By.cssSelector("[id='bigpic']");
+    private final static By itemPrice=By.xpath("//span[@id='our_price_display']") ;//sBy.cssSelector("#our_price_display")
+    private final static By itemPriceQuick = By.cssSelector("#our_price_display");
+    private final static By itemShortDescription= By.cssSelector("#short_description_content");
+    private final static By itemShortDescriptionQuick= By.xpath("//div[@id='short_description_content']//p");
+    private final static By addToCartButton= By.cssSelector("#add_to_cart");
     private final static By addToCartItemIcon = By.xpath("//h2[text()][1]");
     private final static By clickCheckOutButton = By.xpath("//a[@class='btn btn-default button button-medium']");
     private final static By clickContinueShoppingButton = By.xpath("//span[@title='Продолжить покупки']");
@@ -31,14 +34,26 @@ public class ItemDetailPage extends BasePage {
         log.info("Get item name");
         return driver.findElement(itemName).getText();
     }
+    public String getItemNameQuick() {
+        log.info("Get item name on quick page");
+        return driver.findElement(itemNameQuick).getText();
+    }
     public String getItemShortDescription(){
         log.info("Get item description");
         return driver.findElement(itemShortDescription).getText();
+    }
+    public String getItemShortDescriptionQuick(){
+        log.info("Get item description on quick page");
+        return driver.findElement(itemShortDescriptionQuick).getText();
     }
     public String getItemPrice() {
         log.info("Get item price");
         return driver.findElement(itemPrice).getText();
 
+    }
+    public String getItemPriceQuick() {
+        log.info("Get item price on quick page");
+        return driver.findElement(itemPriceQuick).getText();
     }
     public void clickAddToCardButton() {
         log.info("Click to cart button");

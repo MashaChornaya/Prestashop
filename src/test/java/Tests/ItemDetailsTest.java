@@ -1,13 +1,10 @@
 package Tests;
 
+import Pages.CartPage;
 import Pages.ItemDetailPage;
 import Pages.AuthenticationPage;
 import Pages.ProductsPage;
 import io.qameta.allure.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -16,7 +13,7 @@ public class ItemDetailsTest extends BaseTest {
     ItemDetailPage itemDetailPage;
     ProductsPage productsPage;
     AuthenticationPage authenticationPage;
-
+    CartPage cartPage;
 
     @BeforeClass (alwaysRun = true)
     public void initialise(){
@@ -24,30 +21,46 @@ public class ItemDetailsTest extends BaseTest {
         itemDetailPage=new ItemDetailPage(driver);
         productsPage=new ProductsPage(driver);
         authenticationPage=new AuthenticationPage(driver);
+        cartPage=new CartPage(driver);
 
     }
-    @Test(groups={"Regression"},dataProvider = "inventoryItemsTestData")
+    @Test(groups={"Regression"},dataProvider = "inventoryItemsTestOnProductPageData")
     @Description("Check item name, price and description")
     @Severity(SeverityLevel.NORMAL)
     @Link("http://prestashop.qatestlab.com")
-
-    public void inventoryItemsTest(String itemName, String itemPrice, String itemShortDescription) {
-        homePage.clickToSignInButton();
-        authenticationPage.authentication(EMAIL, PASSWORD);
-        authenticationPage.clickSignButton();
+    public void inventoryItemsTestOnProductPage(String itemName, String itemPrice) {
         homePage.clickToDressesSectionButton();
         productsPage.clickCasualDressesButton();
-        productsPage.openItemByName(itemName);
-        Assert.assertEquals(itemDetailPage.getItemName(), itemName);
-        Assert.assertEquals(itemDetailPage.getItemPrice(), itemPrice);
-        Assert.assertEquals(itemDetailPage.getItemShortDescription(), itemShortDescription);
+        Assert.assertTrue(productsPage.getProductName(itemName),"Wrong name");
+        Assert.assertTrue(productsPage.getProductPrice(itemPrice),"Wrong price");
     }
     @DataProvider()
-    public Object[][] inventoryItemsTestData(){
+    public Object[][] inventoryItemsTestOnProductPageData(){
         return new Object[][]{
-                {"Printed Dress","31,20","100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom."},
-                {"Dress","61,19","Printed evening dress with straight sleeves with black thin waist belt and ruffled linings."},
-                {"Printed Summer Dress","36,60","Sleeveless knee-length chiffon dress. V-neckline with elastic under the bust lining."}
+               {"Printed Dress","31,20"},
+                {"Printed Chiffon Dress","24,60"},
+                {"Red Dress","180,00"},
+                {"White Crisscross Back Shift Dress","720,00"},
+                {"Black Chiffon Dress","816,00"},
+                {"Dark Grey Sheath Dress","660,00"},
+                {"Elegant Beige  Dress","576,00"},
+                {"Pink Skater Dress","696,00"},
+                {"Dark Blue Sheath Dress","840,00"},
         };
     }
+
+    @Test(groups={"Regression"})
+    @Description("Check item name, price and description")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("http://prestashop.qatestlab.com")
+    public void inventoryItemsTestOnItemDetailsPage(){
+        homePage.clickToDressesSectionButton();
+        productsPage.clickCasualDressesButton();
+        productsPage.waitForPageLoaded();
+        productsPage.openItemByName(ITEM_NAME);
+        Assert.assertEquals(itemDetailPage.getItemNameQuick(), ITEM_NAME);
+        Assert.assertEquals(itemDetailPage.getItemPriceQuick(), ITEM_PRICE);
+        Assert.assertEquals(itemDetailPage.getItemShortDescriptionQuick(), ITEM_DESCRIPTION);
+    }
+
 }

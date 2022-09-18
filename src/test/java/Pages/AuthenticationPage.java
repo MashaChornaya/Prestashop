@@ -3,12 +3,18 @@ package Pages;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+
 @Log4j2
 public class AuthenticationPage extends BasePage {
     public AuthenticationPage(WebDriver driver) {
         super(driver);
     }
 
+    private final static By loginButton =By.cssSelector("a.login");
     private final static By signInButton=By.cssSelector("#SubmitLogin");
 
     private final static String URL = "http://prestashop.qatestlab.com.ua/en/authentication?back=my-account";
@@ -17,19 +23,25 @@ public class AuthenticationPage extends BasePage {
     private final static By emailInputForSignIn=By.cssSelector("#email");
     private final static By passwordInputForSignIn=By.cssSelector("#passwd");
 
-
     @Override
     public void waitForPageLoaded() {
         log.info("Wait for login page loaded");
         waitForElementDisplayed(emailInputForNewAcc);
     }
     public void authentication(String email, String password){
+        log.info(String.format("Enter email= %s, and password= %s for sign in then press the 'sign in' button", email, password));
+        clickLogInButton();
         setEmailForSignIn(email);
         setPasswordForSignIn(password);
+        clickSignButton();
     }
     public void clickSignButton() {
         log.info("Click 'Sign In' button");
         driver.findElement(signInButton).click();
+    }
+    public void clickLogInButton() {
+        log.info("Click 'Log In' button");
+        driver.findElement(loginButton).click();
     }
     public void setEmail(String email) {
         log.info(String.format("Set email = %s", email));

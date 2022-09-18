@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Tests" parallel="classes" thread-count="2">
+<suite name="Regression Test" parallel="classes" thread-count="4">
     <parameter name="browser" value="chrome"/>
-    <test name="Open Burger Menu Regression tests">
+    <test name="positiveSearchDressesTest">
         <classes>
-            <class name="Tests.CartTest"></class>
+            <class name="Tests.SearchTests"/>
         </classes>
     </test>
 </suite>

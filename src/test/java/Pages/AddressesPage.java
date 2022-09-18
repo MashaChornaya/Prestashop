@@ -15,6 +15,7 @@ public class AddressesPage extends BasePage {
         super(driver);
     }
 
+
     private final static By addressPageHeader= By.cssSelector(".info-title");
     private final static By firstNameAddressPage= By.xpath("//input[@id='firstname']");
     private final static By lastNameAddressPage= By.xpath("//input[@id='lastname']");
@@ -26,13 +27,14 @@ public class AddressesPage extends BasePage {
     private final static By saveAddressButton= By.xpath("//button[@id='submitAddress']");
     private final static By addressCompleteIcon= By.xpath("//h3[ text()='Your billing address']");
     private final static By stateSelect=By.cssSelector("#id_state");
+    private final static By proceedToCheckoutOnAddressesPage=By.xpath("//button[@name='processAddress']");
+
 
     @Override
     public void waitForPageLoaded() {
         log.info("Wait for create page loaded");
         waitForElementDisplayed(addressPageHeader);
     }
-
     public void setFirstNameAddressPage(String firstNameForAddressPage) {
         log.info(String.format("Set first name = %s from Cart Test ", firstNameForAddressPage));
         driver.findElement(firstNameAddressPage).sendKeys(firstNameForAddressPage);
@@ -78,6 +80,11 @@ public class AddressesPage extends BasePage {
 
     public boolean isAddressCompleteIconDisplayed() {
         return driver.findElement(addressCompleteIcon).isDisplayed();
+    }
+
+    public void clickToProceedToCheckoutButtonOnAddressesPage(){
+        log.info("Click 'Proceed To Checkout' button on addresses page");
+        driver.findElement(proceedToCheckoutOnAddressesPage).click();
     }
 
 }
