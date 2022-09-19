@@ -22,7 +22,7 @@ public class ItemDetailPage extends BasePage {
     private final static By addToCartButton= By.cssSelector("#add_to_cart");
     private final static By addToCartItemIcon = By.xpath("//h2[text()][1]");
     private final static By clickCheckOutButton = By.xpath("//a[@class='btn btn-default button button-medium']");
-    private final static By clickContinueShoppingButton = By.xpath("//span[@title='Продолжить покупки']");
+    private final static By clickContinueShoppingButton = By.xpath("//span[@class='continue btn btn-default button exclusive-medium']");
    private final static By clickCloseWindowButton = By.cssSelector(".cross");
    private final static By cartButtonItemDetailsPage = By.cssSelector(".shopping_cart");
     @Override

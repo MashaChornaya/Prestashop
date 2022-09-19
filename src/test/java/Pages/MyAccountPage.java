@@ -33,7 +33,6 @@ public class MyAccountPage extends BasePage{
     public void clickToAlert()  {
         Alert firstAlert = driver.switchTo().alert();
         String alertText = firstAlert.getText();
-        Assert.assertFalse(alertText.isEmpty());
         firstAlert.accept();
         driver.switchTo().defaultContent();
     }

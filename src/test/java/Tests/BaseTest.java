@@ -16,7 +16,6 @@ import static Tests.AuthenticationTests.YEAR;
 @Listeners(TestListener.class)
 public class BaseTest {
 
-    final static String EMAIL="asdfrewq@mail.ru";
     final static String PASSWORD="123456";
     final static String FIRST_NAME="Masha";
     final static String LAST_NAME="Chornaya";
