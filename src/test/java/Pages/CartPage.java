@@ -17,8 +17,8 @@ public class CartPage extends BasePage {
     private final static By cartPageHeader = By.cssSelector("#cart_title");
     private final static By trashButton=By.cssSelector(".cart_quantity_delete");
     private final static By proceedToCheckoutButton=By.xpath("//span[text()='Proceed to checkout']");
-    private final static By valueOfCart = By.xpath("//p[@class='alert alert-warning']");
-
+    private final static By valueOfCart =By.cssSelector(".heading-counter");
+    private final static By cartButton=By.cssSelector(".shopping_cart");
 
     @Override
     public void waitForPageLoaded() {
@@ -33,6 +33,10 @@ public class CartPage extends BasePage {
         public void clickTrashButton() {
         log.info("Click 'Trash' button");
         driver.findElement(trashButton).click();
+    }
+    public void clickCartButton(){
+        log.info("Click 'Cart' button");
+        driver.findElement(cartButton).click();
     }
     public void waitForCartValueTextIsDisplayed() {
         WebElement cartValueText=(new WebDriverWait(driver,5))

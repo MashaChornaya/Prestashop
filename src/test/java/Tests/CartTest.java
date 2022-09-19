@@ -74,12 +74,9 @@ public class CartTest extends BaseTest {
         itemDetailPage.clickCartButtonItemDetailsButton();
         cartPage.waitForPageLoaded();
         cartPage.clickTrashButton();
-        itemDetailPage.clickCartButtonItemDetailsButton();
-        cartPage.waitForPageLoaded();
+        cartPage.clickCartButton();
         Assert.assertTrue(cartPage.isAlertDisplayed());
-        Assert.assertEquals(cartPage.getCartValue(),"Your shopping cart is empty.");
     }
-
     @Test(groups = {"Regression"})
     @Link("http://prestashop.qatestlab.com.ua/en/")
     @Description("Actions on addresses page")
