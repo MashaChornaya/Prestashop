@@ -12,6 +12,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class AuthenticationTests extends BaseTest {
+    final static String PASSWORD="123456";
+    final static String FIRST_NAME="Masha";
+    final static String LAST_NAME="Chornaya";
     AuthenticationPage authenticationPage;
     CreateAnAccountPage createAnAccountPage;
 

@@ -18,10 +18,8 @@ public class SearchTests extends BaseTest{
         homePage=new HomePage(driver);
         productsPage=new ProductsPage(driver);
         itemDetailPage=new ItemDetailPage(driver);
-
     }
     final static String ITEM="Pasta";
-
     @Test(groups = {"Regression"})
     @Description("Search dresses and how many dresses are in prestashop")
     @Severity(SeverityLevel.NORMAL)
@@ -31,7 +29,6 @@ public class SearchTests extends BaseTest{
         Assert.assertTrue(productsPage.isResultsMassageDisplayed());
         Assert.assertEquals(productsPage.getResultsMassageText(),"13 results have been found.");
     }
-
     @Test(groups = {"Negative", "Regression"})
     @Description("Search not exist item")
     @Severity(SeverityLevel.TRIVIAL)
@@ -43,6 +40,5 @@ public class SearchTests extends BaseTest{
         Assert.assertTrue(productsPage.isResultsMassageDisplayed());
         Assert.assertEquals(productsPage.getResultsMassageText(),"0 results have been found.");
     }
-
 }
 

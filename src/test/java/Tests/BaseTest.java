@@ -15,10 +15,6 @@ import static Tests.AuthenticationTests.YEAR;
 @Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
-
-    final static String PASSWORD="123456";
-    final static String FIRST_NAME="Masha";
-    final static String LAST_NAME="Chornaya";
     final static String ITEM_NAME="Printed Dress";
     final static String ITEM_PRICE="31,20 ₴";
     final static String ITEM_DESCRIPTION="100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom.";
