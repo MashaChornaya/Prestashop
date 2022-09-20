@@ -40,8 +40,6 @@ public class CheckoutTests extends BaseTest {
     final static String CITY_FOR_ADDRESS_PAGE="New city";
     final static String HOME_PHONE_FOR_ADDRESS_PAGE="11234567890";
     final static String ADDRESS_TITLE_FOR_ADDRESS_PAGE="First address";
-
-
     @Test(groups = {"Smoke"})
     @Link("http://prestashop.qatestlab.com.ua/en/")
     @Description("Actions for positive checkout")
@@ -80,8 +78,6 @@ public class CheckoutTests extends BaseTest {
         myAccountPage.clickToDeleteAddressesButton();
         myAccountPage.clickToAlert();
     }
-
-
     @Test(groups = {"Smoke"})
     @Link("http://prestashop.qatestlab.com.ua/en/")
     @Description("Actions for negative checkout")
