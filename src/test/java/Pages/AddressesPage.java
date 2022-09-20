@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.AllureUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -79,6 +80,7 @@ public class AddressesPage extends BasePage {
     }
 
     public boolean isAddressCompleteIconDisplayed() {
+        AllureUtils.attachScreenshot(driver);
         return driver.findElement(addressCompleteIcon).isDisplayed();
     }
 

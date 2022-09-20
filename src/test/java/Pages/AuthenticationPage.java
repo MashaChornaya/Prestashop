@@ -1,5 +1,7 @@
 package Pages;
 
+import Utils.AllureUtils;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,12 +30,14 @@ public class AuthenticationPage extends BasePage {
         log.info("Wait for login page loaded");
         waitForElementDisplayed(emailInputForNewAcc);
     }
+    @Step("Logging in")
     public void authentication(String email, String password){
         log.info(String.format("Enter email= %s, and password= %s for sign in then press the 'sign in' button", email, password));
         clickLogInButton();
         setEmailForSignIn(email);
         setPasswordForSignIn(password);
         clickSignButton();
+        AllureUtils.attachScreenshot(driver);
     }
     public void clickSignButton() {
         log.info("Click 'Sign In' button");
