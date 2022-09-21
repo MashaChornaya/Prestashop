@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Test" parallel="classes" thread-count="4">
     <parameter name="browser" value="chrome"/>
-    <test name="positiveSearchDressesTest">
+    <test name="Test">
         <classes>
             <class name="Tests.SearchTests"/>
         </classes>

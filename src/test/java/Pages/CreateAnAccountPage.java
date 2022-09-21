@@ -79,23 +79,11 @@ public class CreateAnAccountPage extends BasePage {
         driver.findElement(submitAccountButton).click();
     }
     public boolean isAccountIconDisplayed() {
+
         return driver.findElement(accountIcon).isDisplayed();
     }
     public String getAccountIconText() {
         return driver.findElement(accountIcon).getText();
-    }
-
-
-
-
-    @Step("Logging in")
-    @Attachment(value = "screenshot", type = "image/png")
-    public void login(String firstName, String password, String lastName) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPassword(password);
-        clickSubmitAccount();
-        AllureUtils.attachScreenshot(driver);
     }
 
     public void open() {

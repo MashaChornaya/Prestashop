@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import io.qameta.allure.Attachment;
 
 public class AuthenticationTests extends BaseTest {
     final static String PASSWORD="123456";

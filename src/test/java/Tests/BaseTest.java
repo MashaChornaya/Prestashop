@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
@@ -71,16 +72,14 @@ public class BaseTest {
         createAnAccountPage.clickSubmitAccount();
 
     }
-
     @AfterMethod(alwaysRun = true, description = "close browser")
     public void clearCookies() {
         log.debug("Clear all cookies here");
         driver.manage().deleteAllCookies();
-
         ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
         ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
     }
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         log.debug("Driver closed");
         driver.quit();

@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.AllureUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,7 @@ public class ShippingPage extends BasePage{
         return driver.findElement(shippingPageHeader).isDisplayed();
     }
     public boolean isErrorMessageDisplayed(){
+        AllureUtils.attachScreenshot(driver);
         return driver.findElement(errorMessage).isDisplayed();
     }
     public String getErrorMassageText() {
