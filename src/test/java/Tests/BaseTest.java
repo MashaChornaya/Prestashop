@@ -60,6 +60,7 @@ public class BaseTest {
         log.debug("Page opened");
         driver.get("http://prestashop.qatestlab.com.ua/en/");
         homePage.clickToSignInButton();
+        authenticationPage.waitForPageLoaded();
         authenticationPage.setEmail(email);
         authenticationPage.clickCreateAccountButton();
         createAnAccountPage.clickTitleButton();

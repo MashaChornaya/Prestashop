@@ -78,7 +78,7 @@ public class CheckoutTests extends BaseTest {
         myAccountPage.clickToDeleteAddressesButton();
         myAccountPage.clickToAlert();
     }
-    @Test(groups = {"Smoke","Negative"})
+    @Test(groups = {"Regression","Negative"})
     @Link("http://prestashop.qatestlab.com.ua/en/")
     @Description("Actions for negative checkout")
     @Severity(SeverityLevel.CRITICAL)

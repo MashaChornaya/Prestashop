@@ -45,7 +45,7 @@ public class AuthenticationTests extends BaseTest {
         Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
         Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");
     }
-    @Test(dataProvider = "negativeCreateAccount", groups = {"Negative", "Smoke"})
+    @Test(dataProvider = "negativeCreateAccount", groups = {"Negative", "Regression"})
     @Description("Troubles with first name, last name and password when you try to create new account")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
