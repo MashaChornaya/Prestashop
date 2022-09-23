@@ -2,16 +2,14 @@ package Tests;
 
 import Pages.*;
 import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
-import static Tests.AuthenticationTests.YEAR;
+import static Tests.CreateAccountTest.YEAR;
 
 @Log4j2
 @Listeners(TestListener.class)
@@ -19,6 +17,7 @@ public class BaseTest {
     final static String ITEM_NAME="Printed Dress";
     final static String ITEM_PRICE="31,20 ₴";
     final static String ITEM_DESCRIPTION="100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom.";
+    final static String YEAR="1999";
     protected String email;
     protected String password ;
 
