@@ -56,7 +56,7 @@ public class BaseTest {
         email = faker.internet().emailAddress();
         password = faker.internet().password();
         log.debug("Page opened");
-        driver.get("http://prestashop.qatestlab.com.ua/");
+        driver.get("http://prestashop.qatestlab.com.ua/en/");
         homePage.clickToSignInButton();
         authenticationPage.waitForPageLoaded();
         authenticationPage.setEmail(email);

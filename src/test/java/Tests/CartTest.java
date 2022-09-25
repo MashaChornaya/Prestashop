@@ -53,7 +53,7 @@ public class CartTest extends BaseTest {
         itemDetailPage.clickAddToCardButton();
         itemDetailPage.waitForAddToCartItemIconDisplayed();
         Assert.assertTrue(itemDetailPage.isAddToCartItemIconDisplayed());
-        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Товар был успешно добавлен в вашу корзину");
+        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Product successfully added to your shopping cart");
     }
     @Test(groups = {"Smoke"})
     @Link("http://prestashop.qatestlab.com.ua/")
@@ -67,7 +67,7 @@ public class CartTest extends BaseTest {
         itemDetailPage.clickAddToCardButton();
         itemDetailPage.waitForAddToCartItemIconDisplayed();
         Assert.assertTrue(itemDetailPage.isAddToCartItemIconDisplayed());
-        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Товар был успешно добавлен в вашу корзину");
+        Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Product successfully added to your shopping cart");
         itemDetailPage.clickCloseWindowButton();
         itemDetailPage.clickCartButtonItemDetailsButton();
         cartPage.waitForPageLoaded();
