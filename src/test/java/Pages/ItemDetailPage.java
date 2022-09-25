@@ -24,7 +24,7 @@ public class ItemDetailPage extends BasePage {
     private final static By clickCheckOutButton = By.xpath("//a[@class='btn btn-default button button-medium']");
     private final static By clickContinueShoppingButton = By.xpath("//span[@class='continue btn btn-default button exclusive-medium']");
    private final static By clickCloseWindowButton = By.cssSelector(".cross");
-   private final static By cartButtonItemDetailsPage = By.cssSelector(".shopping_cart");
+   private final static By cartButtonItemDetailsPage = By.cssSelector(".shopping_cart a");
     @Override
     public void waitForPageLoaded() {
         log.info("Waiting for item details page loaded");
