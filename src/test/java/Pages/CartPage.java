@@ -13,7 +13,6 @@ public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
     }
-    private final static String URL = "http://prestashop.qatestlab.com.ua/ru/order";
     private final static By cartPageHeader = By.cssSelector("#cart_title");
     private final static By trashButton=By.cssSelector(".cart_quantity_delete");
     private final static By proceedToCheckoutButton=By.xpath("//span[text()='Proceed to checkout']");

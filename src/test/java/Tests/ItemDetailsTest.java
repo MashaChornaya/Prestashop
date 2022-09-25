@@ -27,7 +27,7 @@ public class ItemDetailsTest extends BaseTest {
     @Test(groups={"Regression"},dataProvider = "inventoryItemsTestOnProductPageData")
     @Description("Check item name, price and description")
     @Severity(SeverityLevel.NORMAL)
-    @Link("http://prestashop.qatestlab.com")
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void inventoryItemsTestOnProductPage(String itemName, String itemPrice) {
         homePage.clickToDressesSectionButton();
         productsPage.clickCasualDressesButton();
@@ -52,7 +52,7 @@ public class ItemDetailsTest extends BaseTest {
     @Test(groups={"Regression"})
     @Description("Check item name, price and description")
     @Severity(SeverityLevel.NORMAL)
-    @Link("http://prestashop.qatestlab.com")
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void inventoryItemsTestOnItemDetailsPage(){
         homePage.clickToDressesSectionButton();
         productsPage.clickCasualDressesButton();

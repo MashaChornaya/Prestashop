@@ -41,7 +41,7 @@ public class CheckoutTests extends BaseTest {
     final static String HOME_PHONE_FOR_ADDRESS_PAGE="11234567890";
     final static String ADDRESS_TITLE_FOR_ADDRESS_PAGE="First address";
     @Test(groups = {"Smoke"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Link("http://prestashop.qatestlab.com.ua/")
     @Description("Actions for positive checkout")
     @Severity(SeverityLevel.CRITICAL)
     public void actionsForPositiveCheckoutTest() {
@@ -79,7 +79,7 @@ public class CheckoutTests extends BaseTest {
         myAccountPage.clickToAlert();
     }
     @Test(groups = {"Negative"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Link("http://prestashop.qatestlab.com.ua/")
     @Description("Actions for negative checkout")
     @Severity(SeverityLevel.CRITICAL)
     public void actionsForNegativeCheckoutTest() {

@@ -1,6 +1,7 @@
 package Tests;
 import Pages.*;
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
@@ -23,6 +24,7 @@ public class SearchTests extends BaseTest{
     @Test(groups = {"Regression"})
     @Description("Search dresses and how many dresses are in prestashop")
     @Severity(SeverityLevel.NORMAL)
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void positiveSearchDressesTest() {
         homePage.setProductNameToSearchInput(ITEM_NAME);
         homePage.clickSearchButton();
@@ -32,6 +34,7 @@ public class SearchTests extends BaseTest{
     @Test(groups = {"Negative"})
     @Description("Search not exist item")
     @Severity(SeverityLevel.TRIVIAL)
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void negativeSearchItemTest() {
         homePage.setProductNameToSearchInput(ITEM);
         homePage.clickSearchButton();

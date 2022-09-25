@@ -42,7 +42,7 @@ public class CartTest extends BaseTest {
     final static String ADDRESS_TITLE_FOR_ADDRESS_PAGE="First address";
 
     @Test(groups = {"Smoke"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Link("http://prestashop.qatestlab.com.ua/")
     @Description("Add product to cart")
     @Severity(SeverityLevel.CRITICAL)
     public void addItemToCartTest() {
@@ -56,7 +56,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(itemDetailPage.getAddToCartItemIconText(),"Товар был успешно добавлен в вашу корзину");
     }
     @Test(groups = {"Smoke"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Link("http://prestashop.qatestlab.com.ua/")
     @Description("Remove product from cart")
     @Severity(SeverityLevel.CRITICAL)
     public void removeItemFromCartTest() {
@@ -76,7 +76,7 @@ public class CartTest extends BaseTest {
         Assert.assertTrue(cartPage.isAlertDisplayed());
     }
     @Test(groups = {"Regression"})
-    @Link("http://prestashop.qatestlab.com.ua/en/")
+    @Link("http://prestashop.qatestlab.com.ua/")
     @Description("Actions on addresses page")
     @Severity(SeverityLevel.CRITICAL)
     public void actionsOnAddressesPageTestWithSelect() {

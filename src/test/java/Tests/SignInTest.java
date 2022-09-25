@@ -28,7 +28,7 @@ public class SignInTest extends BaseTest {
     @Test(groups = {"Smoke"})
     @Description("Positive Sign In Test")
     @Severity(SeverityLevel.CRITICAL)
-    @Link("http://prestashop.qatestlab.com")
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void positiveSignInTest() {
         homePage.clickToSignOutButton();
         authenticationPage.authentication(email, password);
@@ -39,7 +39,7 @@ public class SignInTest extends BaseTest {
     @Test(dataProvider = "negativeCreateAccount", groups = {"Negative"})
     @Description("Troubles with first name, last name and password when you try to create new account")
     @Severity(SeverityLevel.CRITICAL)
-    @Link("http://prestashop.qatestlab.com")
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void negativeCreateAccountTest(String email, String firstName, String lastName, String password, String errorMessage) {
         homePage.clickToSignOutButton();
         authenticationPage.setEmail(email);

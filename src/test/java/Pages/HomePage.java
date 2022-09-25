@@ -14,7 +14,6 @@ public class HomePage  extends BasePage{
         log.info("Waiting for home page loaded");
         waitForElementDisplayed(home_Picture);
     }
-    private final static String URL = "http://prestashop.qatestlab.com.ua/ru/";
     protected final static By home_Picture= By.xpath("//img[@src='http://prestashop.qatestlab.com.ua/modules/homeslider/images/sample-1.jpg']");
     private final static By signInHomePageButton = By.cssSelector(".login");
     private final static By cartButton = By.cssSelector(".shopping_cart");

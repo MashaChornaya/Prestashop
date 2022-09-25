@@ -10,11 +10,9 @@ public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
-
-    private final static String URL = "http://prestashop.qatestlab.com.ua/ru/8-dresses";
-    private final static By casualDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/9-casual-dresses']");
-    private final static By eveningDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/10-evening-dresses']");
-    private final static By summerDresses = By.xpath("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/11-summer-dresses']");
+    private final static By casualDresses = By.xpath("//div[@id='categories_block_left']/descendant::li[1]");//("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/9-casual-dresses']");
+    private final static By eveningDresses = By.xpath("//div[@id='categories_block_left']/descendant::li[2]");//("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/10-evening-dresses']");
+    private final static By summerDresses = By.xpath("//div[@id='categories_block_left']/descendant::li[3]");//("//div[@id='categories_block_left']/descendant::a[@href='http://prestashop.qatestlab.com.ua/ru/11-summer-dresses']");
     private final static By dressPageIcon = By.cssSelector(".cat-name");
     private final static By resultsMessage = By.xpath("//span[@class='heading-counter']");
     private final static By productName= By.cssSelector("#center_column .product-name");
@@ -53,7 +51,7 @@ private final static By itemLink= By.xpath("//div[@class='right-block']//a[@clas
         log.info(String.format("Open Item with product name = %s ",productsName));
         WebElement productContainer = getProductContainerByName(productsName);
         productContainer.findElement(itemLink).click();
-    }
+    } 
 
     private WebElement getProductContainerByName(String productsName) {
         return driver.findElement(

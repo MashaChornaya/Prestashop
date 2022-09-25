@@ -23,7 +23,7 @@ public class CreateAccountTest extends BaseTest {
     @Test(groups = {"Smoke"})
     @Description("Positive New Account Authorisation Test")
     @Severity(SeverityLevel.CRITICAL)
-    @Link("http://prestashop.qatestlab.com")
+    @Link("http://prestashop.qatestlab.com.ua/")
     public void positiveCreateAccountTest() {
         Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
         Assert.assertEquals(createAnAccountPage.getAccountIconText(),"MY ACCOUNT");

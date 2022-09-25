@@ -4,9 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
+;
 
 @Log4j2
 public class MyAccountPage extends BasePage{

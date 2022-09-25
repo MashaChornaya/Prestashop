@@ -13,9 +13,9 @@ public class ItemDetailPage extends BasePage {
         super(driver);
     }
     private final static By itemName= By.cssSelector("[itemprop='name']");
-    private final static By itemNameQuick=By.xpath("//div[@class='pb-center-column col-xs-12 col-sm-4']//h1");////h1[@itemprop='name']"
+    private final static By itemNameQuick=By.xpath("//div[@class='pb-center-column col-xs-12 col-sm-4']//h1");
     private final static By itemPicture=By.cssSelector("[id='bigpic']");
-    private final static By itemPrice=By.xpath("//span[@id='our_price_display']") ;//sBy.cssSelector("#our_price_display")
+    private final static By itemPrice=By.xpath("//span[@id='our_price_display']") ;
     private final static By itemPriceQuick = By.cssSelector("#our_price_display");
     private final static By itemShortDescription= By.cssSelector("#short_description_content");
     private final static By itemShortDescriptionQuick= By.xpath("//div[@id='short_description_content']//p");

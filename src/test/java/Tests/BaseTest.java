@@ -9,7 +9,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
-import static Tests.CreateAccountTest.YEAR;
 
 @Log4j2
 @Listeners(TestListener.class)
@@ -57,7 +56,7 @@ public class BaseTest {
         email = faker.internet().emailAddress();
         password = faker.internet().password();
         log.debug("Page opened");
-        driver.get("http://prestashop.qatestlab.com.ua/en/");
+        driver.get("http://prestashop.qatestlab.com.ua/");
         homePage.clickToSignInButton();
         authenticationPage.waitForPageLoaded();
         authenticationPage.setEmail(email);
