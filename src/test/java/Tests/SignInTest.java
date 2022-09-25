@@ -8,7 +8,6 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -25,28 +24,24 @@ public class SignInTest extends BaseTest {
         authenticationPage = new AuthenticationPage(driver);
         createAnAccountPage = new CreateAnAccountPage(driver);
     }
-    @BeforeMethod
-    public void precondition(){
-          homePage.clickToSignOutButton();
-      }
-
 
     @Test(groups = {"Smoke"})
     @Description("Positive Sign In Test")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void positiveSignInTest() {
-        homePage.clickToSignInButton();
+        homePage.clickToSignOutButton();
         authenticationPage.authentication(email, password);
         Assert.assertTrue(createAnAccountPage.isAccountIconDisplayed());
         Assert.assertEquals(createAnAccountPage.getAccountIconText(), "MY ACCOUNT");
     }
 
-    @Test(dataProvider = "negativeCreateAccount", groups = {"Negative", "Regression"})
+    @Test(dataProvider = "negativeCreateAccount", groups = {"Negative"})
     @Description("Troubles with first name, last name and password when you try to create new account")
     @Severity(SeverityLevel.CRITICAL)
     @Link("http://prestashop.qatestlab.com")
     public void negativeCreateAccountTest(String email, String firstName, String lastName, String password, String errorMessage) {
+        homePage.clickToSignOutButton();
         authenticationPage.setEmail(email);
         authenticationPage.clickCreateAccountButton();
         createAnAccountPage.clickTitleButton();

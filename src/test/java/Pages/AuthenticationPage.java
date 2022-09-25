@@ -16,12 +16,12 @@ public class AuthenticationPage extends BasePage {
         super(driver);
     }
 
-    private final static By loginButton =By.cssSelector("a.login");
+    private final static By loginButton=By.xpath("a[@class='login']") ;
     private final static By signInButton=By.cssSelector("#SubmitLogin");
 
     private final static String URL = "http://prestashop.qatestlab.com.ua/en/authentication?back=my-account";
     private final static By emailInputForNewAcc = By.cssSelector("#email_create");
-    private final static By createAccountButton = By.xpath("//i[@class='icon-user left']");
+    private final static By createAccountButton = By.cssSelector("#SubmitCreate");
     private final static By emailInputForSignIn=By.cssSelector("#email");
     private final static By passwordInputForSignIn=By.cssSelector("#passwd");
 
@@ -33,7 +33,6 @@ public class AuthenticationPage extends BasePage {
     @Step("Logging in")
     public void authentication(String email, String password){
         log.info(String.format("Enter email= %s, and password= %s for sign in then press the 'sign in' button", email, password));
-        clickLogInButton();
         setEmailForSignIn(email);
         setPasswordForSignIn(password);
         clickSignButton();

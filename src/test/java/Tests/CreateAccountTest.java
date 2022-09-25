@@ -20,8 +20,6 @@ public class CreateAccountTest extends BaseTest {
         authenticationPage=new AuthenticationPage(driver);
         createAnAccountPage=new CreateAnAccountPage(driver);
     }
-
-
     @Test(groups = {"Smoke"})
     @Description("Positive New Account Authorisation Test")
     @Severity(SeverityLevel.CRITICAL)

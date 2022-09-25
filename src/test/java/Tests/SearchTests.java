@@ -29,7 +29,7 @@ public class SearchTests extends BaseTest{
         Assert.assertTrue(productsPage.isResultsMassageDisplayed());
         Assert.assertEquals(productsPage.getResultsMassageText(),"13 results have been found.");
     }
-    @Test(groups = {"Negative", "Regression"})
+    @Test(groups = {"Negative"})
     @Description("Search not exist item")
     @Severity(SeverityLevel.TRIVIAL)
     public void negativeSearchItemTest() {
